@@ -10,3 +10,4 @@ torchvision
 joblib
 scikit-image
 imutils
+scikit-learn
