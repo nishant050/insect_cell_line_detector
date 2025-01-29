@@ -545,7 +545,7 @@ class InsectDetectionApp:
             if image is not None:
                 # Store image in session state
                 st.session_state.current_image = image
-                st.image(image, caption="Uploaded Image", use_container_width=True)
+                st.image(image, caption="Uploaded Image", use_column_width=True)
                 
                 # Load ground truth if provided
                 ground_truth = self.data_loader.load_csv(csv_file)
@@ -573,11 +573,43 @@ class InsectDetectionApp:
                             image, ground_truth, predictions
                         )
                         st.pyplot(fig)
+
+                        # Create DataFrame with bounding boxes and area
+                        if len(predictions) > 0:
+                            df = pd.DataFrame(
+                                predictions, 
+                                columns=['x1', 'y1', 'x2', 'y2']
+                            )
+                            df['Area'] = (df['x2'] - df['x1']) * (df['y2'] - df['y1'])
+                        else:
+                            df = pd.DataFrame(columns=['x1', 'y1', 'x2', 'y2', 'Area'])
+
+                        # Display results
+                        st.subheader("Detection Results")
+                        st.write(f"Detected objects: {len(df)}")
+                        st.dataframe(df)
+
+                        # Prepare Excel download
+                        output = io.BytesIO()
+                        with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+                            df.to_excel(writer, index=False, sheet_name='Detections')
+                            writer.close()
+                            excel_data = output.getvalue()
+
+                        # Download button
+                        st.download_button(
+                            label="📥 Download Excel File",
+                            data=excel_data,
+                            file_name="detections.xlsx",
+                            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                            help="Click to download the detection data as Excel file"
+                        )
                 
                 # Update last settings
                 st.session_state.last_settings = settings.copy()
         else:
             self.ui.show_instructions()
+
 
 ###################
 # Run Application
