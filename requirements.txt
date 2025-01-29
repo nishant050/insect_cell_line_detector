@@ -11,3 +11,4 @@ joblib
 scikit-image
 imutils
 scikit-learn
+xlsxwriter
