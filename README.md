@@ -1,65 +1,65 @@
-# Insect cell line detector
-This repository contains an Insect Detection Application built using Streamlit, OpenCV, and various machine learning models including YOLOv8, Faster R-CNN and HOG+SVM. Users can upload images, select detection models, and visualize results with bounding boxes. The app is designed for easily identifying insects cell line for researchers.
+# Insect Cell Line Detector v2
 
-
-
-# Insect Detection Model Interface
-
-This project is an Insect Detection application built using Streamlit, OpenCV, and several machine learning models including YOLOv8, Faster R-CNN, and a custom HOG + SVM detector. The app allows users to upload images and detect insects within them, visualizing the results with bounding boxes for both predictions and ground truth data.
+This repository contains an Insect Detection Application built using Streamlit, OpenCV, and various machine learning models including the new YOLOv11n, Faster R-CNN, and HOG+SVM. Users can upload images, select detection models, and visualize results with bounding boxes. The app is designed for easily identifying insect cell lines for researchers.
 
 ## Features
 
-- Upload images in various formats (JPEG, PNG, TIFF, etc.)
-- Load ground truth data in YOLO format for comparison
-- Select from multiple detection models:
-  - YOLOv8
-  - Faster R-CNN
-  - HOG + SVM
-- Adjust confidence and IoU thresholds for predictions
-- Visualize detection results with bounding boxes
+-   Upload images in various formats (JPEG, PNG, TIFF, etc.)
+-   Load ground truth data in YOLO format for comparison
+-   Select from multiple detection models:
+    -   **YOLOv11n (New)**: A new model trained on two classes.
+    -   Faster R-CNN
+    -   HOG + SVM
+-   Adjust confidence and IoU thresholds for predictions
+-   Visualize detection results with bounding boxes, with different colors for different classes from the YOLOv11n model.
+-   Download detection results as an Excel file.
+-   Version checking for the `ultralytics` library to ensure compatibility.
 
 ## Technologies Used
 
-- **Streamlit**: For creating the web interface
-- **OpenCV**: For image processing
-- **Ultralytics YOLO**: For object detection
-- **Torchvision**: For Faster R-CNN model
-- **scikit-image**: For HOG feature extraction
-- **imutils**: For non-max suppression
+-   **Streamlit**: For creating the web interface
+-   **OpenCV**: For image processing
+-   **Ultralytics YOLO**: For object detection (v8.0.0 or higher recommended)
+-   **Torchvision**: For Faster R-CNN model
+-   **scikit-image**: For HOG feature extraction
+-   **imutils**: For non-max suppression
 
 ## Installation
 
 To run this project locally, follow these steps:
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/insect-detection-app.git
-   cd insect-detection-app
-   ```
+1.  Clone the repository:
+    ```bash
+    git clone [https://github.com/your-username/insect-detection-app.git](https://github.com/your-username/insect-detection-app.git)
+    cd insect-detection-app
+    ```
 
-2. Create a virtual environment (optional but recommended):
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-   ```
+2.  Create a virtual environment (optional but recommended):
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    ```
 
-3. Install the required packages:
-   ```bash
-   pip install -r requirements.txt
-   ```
+3.  Install the required packages:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-4. Run the Streamlit app:
-   ```bash
-   streamlit run app.py
-   ```
+4.  Make sure you have the model weights in the root directory: `yolov11n.pt`, `frcnn.pth`, `model.npy`, and `scalar.npy`.
+
+5.  Run the Streamlit app:
+    ```bash
+    streamlit run app.py
+    ```
 
 ## Usage
 
-1. Open the app in your browser at `http://localhost:8501`.
-2. Upload an image of an insect.
-3. Optionally upload a text file containing ground truth bounding boxes in YOLO format.
-4. Select the desired detection model and adjust the confidence and IoU thresholds.
-5. Click "Make Predictions" to see the results.
+1.  Open the app in your browser at `http://localhost:8501`.
+2.  Select a model from the sidebar. The new YOLOv11n model is available.
+3.  Upload an image of an insect.
+4.  Optionally upload a text file containing ground truth bounding boxes in YOLO format.
+5.  Adjust the confidence and IoU thresholds in the sidebar.
+6.  The predictions will appear automatically. The results can be downloaded as an Excel file.
 
 ## Contributing
 
@@ -71,8 +71,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-- [Streamlit](https://streamlit.io/)
-- [OpenCV](https://opencv.org/)
-- [Ultralytics YOLO](https://github.com/ultralytics/yolov5)
-- [Torchvision](https://pytorch.org/vision/stable/index.html)
-- [scikit-image](https://scikit-image.org/)
+-   [Streamlit](https://streamlit.io/)
+-   [OpenCV](https://opencv.org/)
+-   [Ultralytics YOLO](https://github.com/ultralytics/yolov5)
+-   [Torchvision](https://pytorch.org/vision/stable/index.html)
+-   [scikit-image](https://scikit-image.org/)
