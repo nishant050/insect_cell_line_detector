@@ -275,7 +275,7 @@ class ModelManager:
     def predict(self, image: np.ndarray, model_type: str, conf: float, iou: float):
         try:
             if model_type == "YOLOv11n":
-                results = self.models[model_type].predict(image, conf=conf, iou=iou, verbose=False)[0]
+                results = self.models[model_type].predict(image, conf=conf, iou=iou, verbose=False, max_det = 1000)[0]
                 boxes = results.boxes.xyxy.cpu().numpy()
                 classes = results.boxes.cls.cpu().numpy().astype(int)
                 confidences = results.boxes.conf.cpu().numpy()
